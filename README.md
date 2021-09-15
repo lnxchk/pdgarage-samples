@@ -11,3 +11,5 @@ Sample Files in this project:
 * **change_event.sh** (September 10): Shell script to create change events on a PagerDuty service. To use this script, add your account API Key as the TOKEN and your service integration key as the KEY.
 
 * **change_events.rb** (September 13, 20): Ruby script to create change events on a PagerDuty service. Similar to the shell script above, change the *service_key* and *account_token* variables for your account.
+
+* **incident.sh**: Shell script to create a single incident on a service. To use this script, change the token to be your api_key, the from: address to an email address associated with your account, and the ID of the service to a service in your account.
