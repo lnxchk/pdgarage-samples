@@ -16,4 +16,4 @@ Sample Files in this project:
 
 * **garage-repo**: Chef / Cinc repo. Project: Create a *chef_handler* that will push information about all changed resources in a Chef / Cinc run to a PagerDuty change event.
 
-Working on Change Event Transformers
+Working on Change Event Transformers. Testing this out!
