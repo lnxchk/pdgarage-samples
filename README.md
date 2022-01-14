@@ -15,3 +15,5 @@ Sample Files in this project:
 * **incident.sh**: Shell script to create a single incident on a service. To use this script, change the token to be your api_key, the from: address to an email address associated with your account, and the ID of the service to a service in your account.
 
 * **garage-repo**: Chef / Cinc repo. Project: Create a *chef_handler* that will push information about all changed resources in a Chef / Cinc run to a PagerDuty change event.
+
+Working on Change Event Transformers
