@@ -1,31 +1,32 @@
 provides :pagerduty_handler
+unified_mode true
 
-property, :account_token,
+property :account_token,
           String
 
-property, :service_key,
+property :service_key,
           String
 
-property, :contact,
+property :contact,
           String
 
-property, :host,
+property :host,
           String,
           default: 'events.pagerduty.com'
 
-property, :port,
+property :port,
           Integer,
           default: 443
 
-property, :api_path,
+property :api_path,
           String,
           default: "/v2/change/enqueue"
 
-property, :summary,
+property :summary,
           String,
-          default: "Changed Resources from Chef-Client Run"
+          default: 'Changed Resources from Chef-Client Run'
 
-property, :name,
+property :name,
           String,
           name_property: true
 
