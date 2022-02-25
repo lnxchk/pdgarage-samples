@@ -14,12 +14,13 @@ For more on the custom change event transform capability,
 https://developer.pagerduty.com/docs/ZG9jOjExMDI5NTgz-custom-change-event-transformer
 """
 
+import os
 from pdpyras import APISession
 
 # auth
 # find the api tokens in your account /api-keys
 # to create a new key, you'll need to be a "manager" or "owner"
-api_token = '....................'
+api_token = os.environ['PD_API_KEY']
 
 # set up the session
 session = APISession(api_token)

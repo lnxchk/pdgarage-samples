@@ -4,6 +4,7 @@ some playing around with the incidents endpoint
 you'll need a valid API token and from: address
 """
 
+import os
 from pdpyras import APISession
 
 # example using curl:
@@ -20,8 +21,9 @@ statuses = ['triggered', 'acknowledged']
 include = "users"
 service_ids = ["SERVICE ID"]
 
-api_token = '.+..................'
-session = APISession(api_token, default_from='....@.......')
+api_token = os.environ['PD_API_KEY']
+from_addr = os.environ['PD_FROM_ADDR']
+session = APISession(api_token, default_from=from_addr)
 
 # query the API for all current incidents on the specified service
 current_incidents = session.list_all(

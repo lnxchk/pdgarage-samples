@@ -14,16 +14,19 @@ For more on Change Event Transforms, see the Developer documentation at
 https://developer.pagerduty.com/docs/ZG9jOjExMDI5NTgz-custom-change-event-transformer
 """
 
+import os
 from pdpyras import APISession
 
 
 # auth
 # find the api tokens in your account /api-keys
 # to create a new key, you'll need to be a "manager" or "owner"
-api_token = '....................'
+api_token = os.environ['PD_API_KEY']
 
 # the "from" address has to be valid for a user in your account
-session = APISession(api_token, default_from='me@example.com')
+from_address = os.environ['PD_FROM_ADDR']
+
+session = APISession(api_token, default_from=from_address)
 
 # get the services in the account, inslude the integrations
 # https://developer.pagerduty.com/api-reference/b3A6Mjc0ODE5Ng-list-services
