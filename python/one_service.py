@@ -28,10 +28,10 @@ api_token = os.environ['PD_API_KEY']
 session = APISession(api_token)
 
 # you can pass the service ID on the command line or enter it at the prompt
-if sys.argv[1]:
-    this_service = str(sys.argv[1])
-else:
+if len(sys.argv) < 2:
     this_service = input("Which service? ")
+else:
+    this_service = str(sys.argv[1])
 
 print()
 # get the services in the account, include the integrations
