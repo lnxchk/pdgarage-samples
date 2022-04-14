@@ -1,0 +1,6 @@
+name              'test'
+maintainer        'PagerDuty'
+maintainer_email  'mwalls@pagerduty.com'
+license           'Apache-2.0'
+description       'Testing cookbook for PagerDuty handler'
+version           '0.0.1'
