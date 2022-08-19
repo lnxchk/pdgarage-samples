@@ -21,9 +21,14 @@ session = APISession(api_token)
 
 print()
 
-endpoint = ""
+endpoint = "/extensions"
 # basic output, report with each service followed by its integrations.
 # For custom change event integrations, print the code. This is stored in the platform as-is.
 response = session.rget(endpoint)
 
-print(response)
+# print(response)
+for resp in response:
+    print(resp['name'])
+    for e_o in resp['extension_objects']:
+        print("\t", e_o['summary'])
+    print("\t", resp['extension_schema']['summary'])

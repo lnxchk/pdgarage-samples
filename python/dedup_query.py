@@ -1,6 +1,3 @@
-"""
-"""
-
 import sys
 import os
 from pdpyras import APISession
@@ -14,16 +11,14 @@ api_token = os.environ['PD_API_KEY']
 session = APISession(api_token)
 
 # you can pass the service ID on the command line or enter it at the prompt
-# if len(sys.argv) < 2:
-#     this_service = input("Which service? ")
-# else:
-#     this_service = str(sys.argv[1])
+#if len(sys.argv) < 2:
+#    this_service = input("Which service? ")
+#else:
+#    this_service = str(sys.argv[1])
 
 print()
 
-endpoint = ""
-# basic output, report with each service followed by its integrations.
-# For custom change event integrations, print the code. This is stored in the platform as-is.
-response = session.rget(endpoint)
+statuses = ["triggered", "acknowledged"]
+long_incidents = session.list_all('incidents', params={'statuses[]': statuses, 'include[]': 'first_trigger_log_entries'})
 
-print(response)
+print(long_incidents)

@@ -1,7 +1,9 @@
+#!/usr/local/bin/python3
 """
 """
 
 import sys
+import json
 import os
 from pdpyras import APISession
 
@@ -20,10 +22,12 @@ session = APISession(api_token)
 #     this_service = str(sys.argv[1])
 
 print()
-
-endpoint = ""
+team_id = "POTOVXC"
+endpoint = "/teams/{}".format(team_id)
 # basic output, report with each service followed by its integrations.
 # For custom change event integrations, print the code. This is stored in the platform as-is.
 response = session.rget(endpoint)
 
 print(response)
+response_object = json.dumps(response, indent=2)
+print(response_object)

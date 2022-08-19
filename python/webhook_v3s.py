@@ -1,4 +1,3 @@
-#!/usr/local/bin/python3
 """
 """
 
@@ -16,18 +15,24 @@ api_token = os.environ['PD_API_KEY']
 session = APISession(api_token)
 
 # you can pass the service ID on the command line or enter it at the prompt
-if len(sys.argv) < 2:
-    this_sched = input("Which schedule? ")
-else:
-    this_sched = str(sys.argv[1])
+# if len(sys.argv) < 2:
+#     this_service = input("Which service? ")
+# else:
+#     this_service = str(sys.argv[1])
 
-endpoint = "/schedules/{}/users".format(this_sched)
+print()
+
+endpoint = "/webhook_subscriptions"
 # basic output, report with each service followed by its integrations.
 # For custom change event integrations, print the code. This is stored in the platform as-is.
 response = session.rget(endpoint)
 
 # print(response)
-response_object = json.dumps(response, indent=2)
-print(response_object)
-# formatted_response = json.loads(response_object)
-# print(formatted_response)
+# response_object = json.dumps(response, indent=2)
+# print(response_object)
+for resp in response:
+    print(resp['description'])
+    # print("\t", resp['filter']['id'])
+    service = session.rget('/services/{}'.format(resp['filter']['id']))
+    print("\t", service['summary'])
+

@@ -28,7 +28,7 @@ from_address = os.environ['PD_FROM_ADDR']
 
 session = APISession(api_token, default_from=from_address)
 
-# get the services in the account, inslude the integrations
+# get the services in the account, include the integrations
 # https://developer.pagerduty.com/api-reference/b3A6Mjc0ODE5Ng-list-services
 my_services = session.rget('/services/PSERVID', params={'include[]': 'integrations'})
 
