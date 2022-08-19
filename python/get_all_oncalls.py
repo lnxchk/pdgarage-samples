@@ -1,6 +1,4 @@
-#!/usr/local/bin/python3
 """
-some scripts for accessing user info via the API
 """
 
 import sys
@@ -16,17 +14,24 @@ api_token = os.environ['PD_API_KEY']
 # initialize the session
 session = APISession(api_token)
 
-endpoint = "/schedules"
+# you can pass the service ID on the command line or enter it at the prompt
+# if len(sys.argv) < 2:
+#     this_service = input("Which service? ")
+# else:
+#     this_service = str(sys.argv[1])
+
+print()
+
+endpoint = "/oncalls?earliest=true"
 # basic output, report with each service followed by its integrations.
 # For custom change event integrations, print the code. This is stored in the platform as-is.
 response = session.rget(endpoint)
 
 # print(response)
-for sched in response:
-    # walk each schedule for a deleted user:
-    # print(sched['id'])
-    endpoint = "/schedules/{}/users".format(sched['id'])
-    sched_users = session.rget(endpoint)
-    for user in sched_users:
-        if "deleted_at" in user:
-            print(user['id'], user['summary'], " was deleted from ", sched['summary'])
+
+# response_object = json.dumps(response, indent=2)
+# print(response_object)
+
+# pull the escalation policy and the level 1 oncall
+for entry in response:
+   print(entry["escalation_policy"]["id"], entry["user"]["summary"])

@@ -1,9 +1,10 @@
+import os
 from pdpyras import APISession
 
 users = ["PM82RFK", "PQWNAVE"]
 team = 'PAKFPTY'
 
-api_token = 'u+1sGHusEUbJd3A7ihng'
+api_token = os.environ['PD_API_KEY']
 session = APISession(api_token)
 
 # teams = session.list_all(

@@ -4,7 +4,7 @@ By default it sets all incidents to 'resolved'.
 If you want to limit it to some services, update the service_ids array and
 add
 "service_ids[]": service_ids
-to the query parameters 
+to the query parameters
 
 You'll need a valid API token and from: address in your environment variables
 

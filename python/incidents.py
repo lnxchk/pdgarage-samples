@@ -19,7 +19,7 @@ date_range = "all"
 urgencies = ['high']
 statuses = ['triggered', 'acknowledged']
 include = "users"
-service_ids = ["SERVICE ID"]
+service_ids = ["PLOSNGW"]
 
 api_token = os.environ['PD_API_KEY']
 from_addr = os.environ['PD_FROM_ADDR']
@@ -31,29 +31,29 @@ current_incidents = session.list_all(
     params={'service_ids[]': service_ids, 'statuses[]': statuses, 'date_range': date_range}
 )
 
-# print(current_incidents)
+print(current_incidents)
 
 # query the API for all current incidents assigned to the specified team
-team_ids = ['TEAM ID']
-team_incidents = session.iter_all(
-    'incidents',
-    params={'team_ids[]': team_ids, 'statuses[]': statuses, 'date_range': date_range}
-)
+#team_ids = ['TEAM ID']
+#team_incidents = session.iter_all(
+#    'incidents',
+#    params={'team_ids[]': team_ids, 'statuses[]': statuses, 'date_range': date_range}
+#)
 
 # for i in team_incidents:
 #     print(i['incident_number'])
 
 # query the API for all incidents owned by the specified user
-user_ids = ['USER ID']
-user_incidents = session.list_all(
-    'incidents',
-    params={'user_ids[]': user_ids, 'statuses[]': statuses, 'date_range': date_range}
-)
+#user_ids = ['USER ID']
+#user_incidents = session.list_all(
+#    'incidents',
+#    params={'user_ids[]': user_ids, 'statuses[]': statuses, 'date_range': date_range}
+#)
 
 # resolve the incidents from the previous query
-for i in user_incidents:
-    # print(i['incident_number'])
-    i['status'] = 'resolved'
+#for i in user_incidents:
+#    # print(i['incident_number'])
+#    i['status'] = 'resolved'
 
-updated_incidents = session.rput('incidents', json=user_incidents)
+#updated_incidents = session.rput('incidents', json=user_incidents)
 
