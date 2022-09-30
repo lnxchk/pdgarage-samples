@@ -1,0 +1,14 @@
+{
+  "payload": {
+    "summary": "JFrog Xray found vulnerabilities in containers",
+    "severity": "critical",
+    "source": "sample.xray.jfrog",
+    "component": "jfrog xray",
+    "group": "prod-datapipe",
+    "class": "security"
+  },
+  "routing_key": "$PD_ROUTE_KEY",
+  "event_action": "trigger",
+  "client": "Sample Monitoring Service",
+  "client_url": "https://monitoring.service.com"
+}
