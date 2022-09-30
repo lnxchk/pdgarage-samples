@@ -1,4 +1,3 @@
 # pagerduty-handler
 
-TODO: Enter the cookbook description here.
-
+Installs/Configures pagerduty-handler
