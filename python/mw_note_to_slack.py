@@ -81,13 +81,20 @@ else:
             mw_id = mw['id']
             desc = mw['description']
             service = serv['summary']
+            link = mw['html_url']
+            service_link = serv['html_url']
 
             start_time = mw['start_time']
             s_time = datetime.strptime(mw['start_time'], "%Y-%m-%dT%H:%M:%S%z")
+            s_readable = s_time.strftime("%H:%M %Z")
             if today.date() == s_time.date():
                 star = "*Today* "
+            else:
+                month = s_time.date().strftime('%b')
+                star = "{} {}, {}: ".format(month, s_time.day, s_time.year)
             end_time = mw['end_time']
             e_time = datetime.strptime(mw['end_time'], "%Y-%m-%dT%H:%M:%S%z")
+            e_readable = e_time.strftime("%H:%M %Z")
             if e_time.timestamp() > today.timestamp() > s_time.timestamp():
                 star = "*Happening Now:* "
 
@@ -95,7 +102,7 @@ else:
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": ">" + star + service + " from " + start_time + " to " + end_time
+                    "text": ">" + star + "<{}|{}>".format(service_link, service) + " from " + s_readable + " to " + e_readable + " <{}|Click here for info>".format(link)
                 }
             }
             blocks.append(my_block)
