@@ -28,18 +28,21 @@ until = since + timedelta(minutes=1)
 since_time = since.isoformat()
 until_time = until.isoformat()
 
-endpoint = "{}/schedules/P05PEP7/overrides?since={}&until={}".format(BaseURL, since_time, until_time)
-# print(endpoint)
+s_endpoint = "schedules/PJ3GLH7/overrides"
+r_endpoint = "{}/{}".format(BaseURL, s_endpoint)
+
 querystring = {"since": since_time, "until": until_time}
-response = requests.get(endpoint, headers=headers, params=querystring)
-# response = session.rget(endpoint)
-print(response.text)
+r_response = requests.get(r_endpoint, headers=headers, params=querystring)
+print(r_response.text)
+print("****")
+x_endpoint = "{}?since={}&until={}".format(r_endpoint, since_time, until_time)
+print(x_endpoint)
+x_response = requests.get(x_endpoint, headers=headers)
+print(x_response.text)
+print("****")
+
+s_response = session.rget(s_endpoint, params=querystring)
+print(s_response)
 # response_object = json.dumps(response.text, indent=2)
 # print(response_object)
 
-# walk the response array to get overrides for each schedule
-# sched_id = response['id']
-# sched_name = response['summary']
-# oncall_user = response['users'][0]['summary']
-#
-# print("{} is oncall for schedule {}".format(oncall_user, sched_name))

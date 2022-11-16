@@ -22,7 +22,8 @@ import json
 import os
 import requests
 from datetime import datetime, timedelta, timezone
-from pdpyras import APISession
+# converting away from pdpyras because overrides isn't working
+# from pdpyras import APISession
 
 # auth
 # find your PagerDuty api tokens in your account /api-keys
@@ -30,11 +31,16 @@ from pdpyras import APISession
 # or use a user token key
 api_token = os.environ['PD_API_KEY']
 
-# initialize the PagerDuty API session
-session = APISession(api_token)
-
 # your slack webhook url
 slack_url = os.environ['SLACK_CHANNEL_URL']
+
+# set up requests components
+BaseURL = "https://api.pagerduty.com/"
+headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/vnd.pagerduty+json;version=2",
+    "Authorization": "Token token={}".format(api_token)
+}
 
 blocks = []
 header_block = {
@@ -46,42 +52,39 @@ header_block = {
 }
 blocks.append(header_block)
 
-# # since_time for the overrides window
-# until_time = datetime.now(timezone.utc)
-# since_time = until_time - timedelta(minutes=1)
-until_time = datetime.now(timezone.utc)
-since_time = until_time - timedelta(minutes=1)
+# since_time for the overrides window
+since = datetime.now(timezone.utc)
+until = since + timedelta(minutes=1)
+since_time = since.isoformat()
+until_time = until.isoformat()
 
-get_scheds = session.rget("/schedules")
-for sched in get_scheds:
+sched_response = requests.get("{}/schedules".format(BaseURL), headers=headers)
+get_scheds = sched_response.json()
+
+for sched in get_scheds['schedules']:
     sched_id = sched['id']
     sched_name = sched['summary']
-
     # request individual schedule from the sched_id
-    # get_this_sched = session.rget("/schedules/{}/users?since={}&until={}".format(sched_id, since_time, until_time))
-    get_this_sched = session.rget("/oncalls?schedule_ids[]={}".format(sched_id))
+    get_this_sched = requests.get("{}/oncalls?schedule_ids[]={}".format(BaseURL, sched_id), headers=headers)
+    this_sched = get_this_sched.json()
     try:
-        # user = get_this_sched[0]['name']
-        user = get_this_sched[0]['user']['summary']
+        oncall = this_sched['oncalls']
+        user = oncall[0]['user']['summary']
     except IndexError:
-        user = "No Current Oncall"
+        user = "No One"
 
     # query PagerDuty for the overrides
-    override_endpoint = "/schedules/{}/overrides?since={}&until={}".format(sched_id, since_time, until_time)
-
-    # send the request using the pdpyras session
-    overrides = session.rget(override_endpoint)
-    print(overrides)
-
-    # if overrides['overrides']:
+    querystring = {"since": since_time, "until": until_time}
+    override_endpoint = "{}/schedules/{}/overrides".format(BaseURL, sched_id)
+    overrides = requests.get(override_endpoint, headers=headers, params=querystring).json()
+    if overrides['overrides']:
         # if there are overrides, figure them out here
         # otherwise, default to the main on-call
-        # print(overrides)
-        # or_object = json.dumps(overrides, indent=2)
-        # print(or_object)
-        # user = user + " Override"
+        e_time = datetime.strptime(overrides['overrides'][0]['end'], "%Y-%m-%dT%H:%M:%S%z")
+        e_readable = e_time.strftime("%H:%M %Z")
+        user = user + " (Override until {})".format(e_readable)
 
-    oncall_string = "{} is oncall for schedule {}".format(user, sched_name)
+    oncall_string = "{} is oncall for {}".format(user, sched_name)
     print(oncall_string)
     # user for the current schedule
     oncall_block = {
@@ -105,7 +108,7 @@ payload = {
 j_payload = json.dumps(payload)
 
 # create and send the request to the slack webhook url
-headers = {"Content-Type": "application/json"}
-sent_msg = requests.post(slack_url, headers=headers, data=j_payload)
+slack_headers = {"Content-Type": "application/json"}
+sent_msg = requests.post(slack_url, headers=slack_headers, data=j_payload)
 sent_msg.raise_for_status()
 print(sent_msg.text)
