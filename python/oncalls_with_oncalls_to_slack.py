@@ -70,6 +70,7 @@ for sched in sched_response:
 
     override_endpoint = "/schedules/{}/overrides".format(sched_id)
     overrides = session.rget(override_endpoint, params=querystring)
+    print(overrides)
     if overrides:
         # if there are overrides, figure them out here
         # otherwise, default to the main on-call
