@@ -11,7 +11,7 @@ resource "pagerduty_schedule" "msd_dbre_sched" {
         name                            = "DBREs"
         start                           = "2024-01-01T00:08:00-05:00"
         rotation_virtual_start          = "2024-01-01T00:08:00-05:00" 
-        rotation_turn_length_seconds    = 86400
+        rotation_turn_length_seconds    = 604800
         users                           = local.dbre_team
     }
 
@@ -24,7 +24,7 @@ resource "pagerduty_schedule" "msd_apps_sched" {
         name                            = "Application Developers"
         start                           = "2024-01-01T00:08:00-05:00"
         rotation_virtual_start          = "2024-01-01T00:08:00-05:00" 
-        rotation_turn_length_seconds    = 86400
+        rotation_turn_length_seconds    = 604800
         users                           = local.app_team
     }
 
