@@ -1,13 +1,13 @@
 {
   "payload": {
-    "summary": "error on cache machine prod-cache01",
+    "summary": "Memory Utilization is high on host03",
     "severity": "critical",
-    "source": "prod-cache01.example.com",
-    "component": "cache",
-    "group": "fab-shop",
+    "source": "prod-datapipe03.example.com",
+    "component": "nginx",
+    "group": "prod-datapipe",
     "class": "service"
   },
-  "routing_key": "$ROUTING_GLOBAL",
+  "routing_key": "$GLOBAL_ROUTING",
   "event_action": "trigger",
   "client": "Sample Monitoring Service",
   "client_url": "https://monitoring.service.com"

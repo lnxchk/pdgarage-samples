@@ -1,0 +1,15 @@
+{
+  "payload": {
+    "summary": "Successful build of web app 1",
+    "severity": "info",
+    "source": "our custom ci/cd service",
+    "component": "build",
+    "group": "web-1",
+    "class": "build"
+  },
+  "routing_key": "$PD_ROUTE_KEY",
+  "dedup_key": "web-build-app-1",
+  "event_action": "resolve",
+  "client": "Sample Monitoring Service",
+  "client_url": "https://monitoring.service.com"
+}
