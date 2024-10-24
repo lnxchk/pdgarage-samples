@@ -1,10 +1,10 @@
 {
   "payload": {
-    "summary": "error on cache machine prod-cache01",
+    "summary": "nginx is not running on machine fabfe01.example.com",
     "severity": "critical",
-    "source": "prod-cache01.example.com",
-    "component": "cache",
-    "group": "fab-shop",
+    "source": "fabfe01.example.com",
+    "component": "frontend",
+    "group": "frontend",
     "class": "service"
   },
   "routing_key": "$ROUTING_GLOBAL",

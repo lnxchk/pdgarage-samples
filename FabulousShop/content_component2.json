@@ -1,13 +1,13 @@
 {
   "payload": {
-    "summary": "error on cache machine prod-cache01",
+    "summary": "alert from HostA for java",
     "severity": "critical",
-    "source": "prod-cache01.example.com",
-    "component": "cache",
-    "group": "fab-shop",
+    "source": "hosta",
+    "component": null,
+    "group": "prod-datapipe",
     "class": "service"
   },
-  "routing_key": "$ROUTING_GLOBAL",
+  "routing_key": "$PD_ROUTE_KEY",
   "event_action": "trigger",
   "client": "Sample Monitoring Service",
   "client_url": "https://monitoring.service.com"

@@ -1,13 +1,17 @@
 {
   "payload": {
-    "summary": "nginx is not running on machine prod-datapipe03.example.com",
+    "summary": "database issue on db-host03.example.com",
     "severity": "critical",
-    "source": "prod-datapipe03.example.com",
-    "component": "nginx",
-    "group": "prod-datapipe",
-    "class": "service"
+    "source": "db-host03.example.com",
+    "component": "database",
+    "group": "fab-shop",
+    "class": "service",
+    "details": {
+      "customers_impacted": 6,
+      "customer_impacting": true
+    }
   },
-  "routing_key": "$PD_ROUTE_KEY",
+  "routing_key": "$ROUTING_GLOBAL",
   "event_action": "trigger",
   "client": "Sample Monitoring Service",
   "client_url": "https://monitoring.service.com"

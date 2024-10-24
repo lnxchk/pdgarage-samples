@@ -1,0 +1,20 @@
+{
+  "payload": {
+    "summary": "InfoInhibitor is annoying again",
+    "severity": "critical",
+    "source": "prod-datapipe03.example.com",
+    "component": "InfoInhibitor",
+    "group": "prod-datapipe",
+    "class": "service",
+    "custom_details": {
+        "alertname": "InfoInhibitor",
+        "alertstate": "pending",
+        "severity": "none",
+        "container": "config-reloader"
+    }
+  },
+  "routing_key": "$PD_ROUTE_KEY",
+  "event_action": "trigger",
+  "client": "Sample Monitoring Service",
+  "client_url": "https://monitoring.service.com"
+}
