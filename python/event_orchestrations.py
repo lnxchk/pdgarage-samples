@@ -46,6 +46,8 @@ rules_set = router_response['sets'][0]['rules']
 new_rules = {}
 i = 0
 for rule in rules_set:
+    # leave out the rule I want to delete. I am matching by the id here, but you could also 
+    #  match on the expression, or on the service ID of the target service
     if rule['id'] == "c7f568f9":
         next
     else:
