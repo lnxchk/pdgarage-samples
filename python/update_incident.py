@@ -9,7 +9,8 @@ https://developer.pagerduty.com/api-reference/b3A6Mjc0ODE0Nw-list-log-entries-fo
 import os
 import sys
 import json
-from pdpyras import APISession
+from datetime import datetime, timedelta, timezone
+from pagerduty import RestApiV2Client
 
 # auth
 # find the api tokens in your account /api-keys
@@ -19,7 +20,11 @@ api_token = os.environ['PD_API_KEY']
 # the "from" address has to be valid for a user in your account
 from_address = os.environ['PD_FROM_ADDR']
 
-session = APISession(api_token, default_from=from_address)
+session = RestApiV2Client(api_token, default_from=from_address)
+
+time_now = datetime.now(timezone.utc)
+string_now = time_now.strftime("%Y-%m-%dT%H:%M:%SZ")
+print(string_now)
 
 if len(sys.argv) < 2:
     my_incident = input("Incident to update: ")
@@ -31,12 +36,10 @@ my_data = {
         {
             "id": my_incident,
             "type": "incident_reference",
-            "assignments": [
+            "pending_actions": [
                 {
-                    "assignee": {
-                        "id": "P9EGVWN",
-                        "type": "user_reference"
-                    }
+                    "type": "unacknowledge",
+                    "at": string_now
                 }
             ]
         }

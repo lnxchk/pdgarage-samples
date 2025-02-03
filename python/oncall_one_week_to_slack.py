@@ -12,13 +12,13 @@ The object id of your Schedule. Available from the URL of that schedule's page i
 import json
 import os
 import requests
-from datetime import datetime, timedelta, timezone, date
-from pdpyras import APISession
+from datetime import datetime, timedelta
+from pagerduty import RestApiV2Client
 
 api_token = os.environ['PD_API_KEY']
 
 # initialize the session with the PagerDuty API
-session = APISession(api_token)
+session = RestApiV2Client(api_token)
 
 this_schedule = "POBJECTID"
 

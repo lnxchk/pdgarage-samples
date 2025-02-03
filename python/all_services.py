@@ -15,7 +15,7 @@ https://developer.pagerduty.com/docs/ZG9jOjExMDI5NTgz-custom-change-event-transf
 """
 
 import os
-from pdpyras import APISession
+from pagerduty import RestApiV2Client
 
 # auth
 # find the api tokens in your account /api-keys
@@ -23,7 +23,7 @@ from pdpyras import APISession
 api_token = os.environ['PD_API_KEY']
 
 # set up the session
-session = APISession(api_token)
+session = RestApiV2Client(api_token)
 
 # get the services in the account, include the integrations
 # https://developer.pagerduty.com/api-reference/b3A6Mjc0ODE5Ng-list-services

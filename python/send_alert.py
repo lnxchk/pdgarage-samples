@@ -2,7 +2,7 @@
 import os
 import json
 import requests
-from pdpyras import APISession
+from pagerduty import RestApiV2Client
 
 # auth
 # find the api tokens in your account /api-keys
@@ -10,7 +10,7 @@ from pdpyras import APISession
 api_token = os.environ['PD_ROUTE_KEY']
 
 # initialize the session
-session = APISession(api_token)
+session = RestApiV2Client(api_token)
 
 # basic output, report with each service followed by its integrations.
 # For custom change event integrations, print the code. This is stored in the platform as-is.

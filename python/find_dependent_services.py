@@ -41,12 +41,8 @@ def get_biz_deps(serv_id):
         if relation['supporting_service']['id'] == serv_id:
             continue
         if relation['supporting_service']['type'] == "business_service_reference":
-            # biz_name = get_biz_serv_name(relation['supporting_service']['id'])
-            # print("{} is a biz service dep of {}".format(biz_name, my_name))
             get_biz_deps(relation['supporting_service']['id'])
         elif relation['supporting_service']['type'] == "technical_service_reference":
-            # tech_name = get_tech_serv_name(relation['supporting_service']['id'])
-            # print("{} is a tech service dep of {}".format(tech_name, my_name))
             get_tech_deps(relation['supporting_service']['id'])
     indent_level -= 1
 
@@ -67,12 +63,8 @@ def get_tech_deps(serv_id):
         if relation['supporting_service']['id'] == serv_id:
             continue
         if relation['supporting_service']['type'] == "business_service_reference":
-            # biz_name = get_biz_serv_name(relation['supporting_service']['id'])
-            # print("{} is a biz service dep of {}".format(biz_name, my_name))
             get_biz_deps(relation['supporting_service']['id'])
         elif relation['supporting_service']['type'] == "technical_service_reference":
-            # tech_name = get_tech_serv_name(relation['supporting_service']['id'])
-            # print("{} is a tech service dep of {}".format(tech_name, my_name))
             get_tech_deps(relation['supporting_service']['id'])
     indent_level -= 1
 
@@ -81,7 +73,6 @@ def get_tech_serv_name(id):
     endpoint = "services/{}".format(id)
     this_service_resp = make_req(endpoint)
     this_service = this_service_resp.json()
-    #print(this_service)
     names_dict[id] = this_service['service']['name']
     return(this_service['service']['name'])
 
@@ -90,7 +81,6 @@ def get_biz_serv_name(id):
     endpoint = "business_services/{}".format(id)
     this_service_resp = make_req(endpoint)
     this_service = this_service_resp.json()
-    # print(this_service)
     names_dict[id] = this_service['business_service']['name']
     return(this_service['business_service']['name'])
 

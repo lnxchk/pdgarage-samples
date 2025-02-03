@@ -11,7 +11,7 @@ Pass the service id on the command line or at the prompt.
 import os
 import sys
 # import json
-from pdpyras import APISession
+from pagerduty import RestApiV2Client
 
 # set some example parameters to play with
 endpoint = "/incidents"
@@ -23,7 +23,7 @@ service_ids = []
 
 api_token = os.environ['PD_API_KEY']
 from_addr = os.environ['PD_FROM_ADDR']
-session = APISession(api_token, default_from=from_addr)
+session = RestApiV2Client(api_token, default_from=from_addr)
 
 # you can pass the service ID on the command line or enter it at the prompt
 if len(sys.argv) < 2:

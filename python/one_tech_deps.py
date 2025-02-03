@@ -4,7 +4,7 @@ Service Dependencies Audit
 This script will query your PagerDuty account for all dependency relationships
 on a single service.
 
-The dependency relationships aren't currently supported in pdpyras.
+The dependency relationships aren't currently supported in pagerduty.
 
 """
 

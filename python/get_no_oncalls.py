@@ -3,7 +3,7 @@
 
 import sys
 import os
-from pdpyras import APISession
+from pagerduty import RestApiV2Client
 
 # auth
 # find the api tokens in your account /api-keys
@@ -11,19 +11,16 @@ from pdpyras import APISession
 api_token = os.environ['PD_API_KEY']
 
 # initialize the session
-session = APISession(api_token)
+session = RestApiV2Client(api_token)
 
-# you can pass the service ID on the command line or enter it at the prompt
-# if len(sys.argv) < 2:
-#     this_service = input("Which service? ")
-# else:
-#     this_service = str(sys.argv[1])
-
-print()
-
-endpoint = ""
+# get the user list
+endpoint = "/users"
 # basic output, report with each service followed by its integrations.
 # For custom change event integrations, print the code. This is stored in the platform as-is.
 response = session.rget(endpoint)
 
-print(response)
+# print(response)
+for user in response:
+    all_oncalls = session.rget("/oncalls?user_ids[]={}".format(user['id']))
+    if not all_oncalls:
+        print("user {} is not in any oncall schedule or escalation policy".format(user['name']))

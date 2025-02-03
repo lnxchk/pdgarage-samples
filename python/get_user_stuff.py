@@ -6,7 +6,7 @@ some scripts for accessing user info via the API
 import sys
 import os
 import json
-from pdpyras import APISession
+from pagerduty import RestApiV2Client
 
 # auth
 # find the api tokens in your account /api-keys
@@ -14,7 +14,7 @@ from pdpyras import APISession
 api_token = os.environ['PD_API_KEY']
 
 # initialize the session
-session = APISession(api_token)
+session = RestApiV2Client(api_token)
 
 endpoint = "/schedules"
 # basic output, report with each service followed by its integrations.

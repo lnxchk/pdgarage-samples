@@ -6,8 +6,8 @@
         PagerDuty account and API key to the REST API
         https://support.pagerduty.com/docs/api-access-keys
 
-        Python package pdpyras
-        https://github.com/PagerDuty/pdpyras
+        Python package pagerduty
+        https://github.com/PagerDuty/pagerduty
 
         Slack workspace and admin access on that space to set
         up an app, or a pre-configured app with a webhook.
@@ -22,7 +22,7 @@ import json
 import os
 import requests
 from datetime import datetime, timedelta, timezone
-from pdpyras import APISession
+from pagerduty import RestApiV2Client
 
 # auth
 # find your PagerDuty api tokens in your account /api-keys
@@ -31,7 +31,7 @@ from pdpyras import APISession
 api_token = os.environ['PD_API_KEY']
 
 # initialize the session with the PagerDuty API
-session = APISession(api_token)
+session = RestApiV2Client(api_token)
 
 # your slack webhook url
 slack_url = os.environ['SLACK_CHANNEL_URL']

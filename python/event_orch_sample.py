@@ -5,7 +5,7 @@
 import os
 import requests
 import json
-# from pdpyras import EventsAPISession
+# from pagerduty import EventsAPIV2Client
 
 # auth
 # find the api tokens in your account /api-keys
@@ -13,7 +13,7 @@ import json
 api_token = os.environ['PD_API_KEY']
 
 # initialize the session
-# session = EventsAPISession(api_token)
+# session = EventsAPIV2Client(api_token)
 
 # you can pass the service ID on the command line or enter it at the prompt
 # if len(sys.argv) < 2:

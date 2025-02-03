@@ -9,7 +9,7 @@ import json
 from datetime import datetime, timedelta
 
 
-# from pdpyras import APISession
+# from pagerduty import RestApiV2Client
 
 
 def GetIncidentCount(since, teamid):
@@ -26,7 +26,7 @@ def GetIncidentCount(since, teamid):
 api_token = os.environ['PD_API_KEY']
 
 # initialize the session
-# session = APISession(api_token)
+# session = RestApiV2Client(api_token)
 BaseURL = "https://api.pagerduty.com/"
 headers = {
     "Content-Type": "application/json",

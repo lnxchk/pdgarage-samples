@@ -6,8 +6,8 @@
         PagerDuty account and API key to the REST API
         https://support.pagerduty.com/docs/api-access-keys
 
-        Python package pdpyras
-        https://github.com/PagerDuty/pdpyras
+        Python package pagerduty
+        https://github.com/PagerDuty/pagerduty
 
         Slack workspace and admin access on that space to set
         up an app, or a pre-configured app with a webhook.
@@ -21,8 +21,7 @@
 import json
 import os
 import requests
-from datetime import datetime, timedelta, timezone
-from pdpyras import APISession
+from pagerduty import RestApiV2Client
 
 # auth
 # find your PagerDuty api tokens in your account /api-keys
@@ -31,7 +30,7 @@ from pdpyras import APISession
 api_token = os.environ['PD_API_KEY']
 
 # initialize the session with the PagerDuty API
-session = APISession(api_token)
+session = RestApiV2Client(api_token)
 
 # your slack webhook url
 slack_url = os.environ['SLACK_CHANNEL_URL']
@@ -45,53 +44,49 @@ header_block = {
     }
 }
 blocks.append(header_block)
+# all_eps is going to capture just the escalation policy id, summary, and oncalls at each rule
+all_eps = {}
 
-# since_time for the overrides window
-since = datetime.now(timezone.utc)
-until = since + timedelta(minutes=1)
-since_time = since.isoformat()
-until_time = until.isoformat()
+# this is going to request the oncalls based on active escalation policies
+all_oncalls = session.rget("/oncalls")
 
-# sched_response = requests.get("{}/schedules".format(BaseURL), headers=headers)\
-sched_response = session.rget("/schedules")
+for oncall in all_oncalls:
+    # things we can get back:
+    # more than one person on call for an escalation policy - as individuals
+    # a schedule included in the ep, and the current oncall for that schedule
+    # more than one layer in an escalation policy
+    ep_id = oncall['escalation_policy']['id']
 
-for sched in sched_response:
-    sched_id = sched['id']
-    sched_name = sched['summary']
-    # request individual schedule from the sched_id
-    get_the_oncall = session.rget("/oncalls?schedule_ids[]={}".format(sched_id))
-    try:
-        user = get_the_oncall[0]['user']['summary']
-    except IndexError:
-        user = "No One"
+    # the escalation policy is already included, add another person
+    if ep_id not in all_eps:
+        all_eps[ep_id] = {
+            "summary": oncall['escalation_policy']['summary'],
+            "html_url": oncall['escalation_policy']['html_url'],
+            "levels": {}
+        }
+    esc_level = oncall['escalation_level']
+    if esc_level not in all_eps[ep_id]['levels']:
+        all_eps[ep_id]['levels'][esc_level] = {"people": oncall['user']['summary']}
+    else:
+        all_eps[ep_id]['levels'][esc_level]["people"] = all_eps[ep_id]['levels'][esc_level]["people"] + ", " + oncall['user']['summary']
 
-    # query PagerDuty for the overrides
-    querystring = {"since": since_time, "until": until_time}
-
-    override_endpoint = "/schedules/{}/overrides".format(sched_id)
-    overrides = session.rget(override_endpoint, params=querystring)
-    print(overrides)
-    if overrides:
-        # if there are overrides, figure them out here
-        # otherwise, default to the main on-call
-        e_time = datetime.strptime(overrides[0]['end'], "%Y-%m-%dT%H:%M:%S%z")
-        e_readable = e_time.strftime("%H:%M %Z")
-        user = user + " (Override until {})".format(e_readable)
-
-    oncall_string = "{} is oncall for {}".format(user, sched_name)
-    print(oncall_string)
-    # user for the current schedule
-    oncall_block = {
-       "type": "section",
-       "text": {
-           "type": "mrkdwn",
-           "text": oncall_string
-       }
+for ep in all_eps:
+    # build the message block for this escalation policy
+    msg_str = "*<{}|{}>* ".format(all_eps[ep]['html_url'], all_eps[ep]['summary'])
+    for level in sorted(all_eps[ep]['levels'].keys()):
+        msg_str = msg_str + "| *Level {}*: {} ".format(level, all_eps[ep]['levels'][level]['people'])
+    msg_block = {
+        "type": "section",
+        "text": {
+            "type": "mrkdwn",
+            "text": msg_str
+        }
     }
+    blocks.append(msg_block)
 
-    blocks.append(oncall_block)
 
-
+j_all_eps = json.dumps(all_eps, indent=2)
+# print(j_all_eps)
 # build the json payload
 payload = {
     "blocks": blocks

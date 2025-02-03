@@ -7,7 +7,7 @@ you'll need a valid API token and from: address
 import os
 import json
 from datetime import datetime, timedelta
-from pdpyras import APISession
+from pagerduty import RestApiV2Client
 
 # example using curl:
 # --url 'https://api.pagerduty.com/incidents?date_range=all&urgencies%5B%5D=high&statuses%5B%5D=triggered&include%5B%5D=users&service_ids%5B%5D=.......' \
@@ -26,7 +26,7 @@ since_time = until_time - timedelta(30)
 
 api_token = os.environ['PD_API_KEY']
 from_addr = os.environ['PD_FROM_ADDR']
-session = APISession(api_token, default_from=from_addr)
+session = RestApiV2Client(api_token, default_from=from_addr)
 
 # query the API for all current incidents on the specified service
 resolved_incidents = session.list_all(
