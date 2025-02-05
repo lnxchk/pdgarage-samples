@@ -16,7 +16,7 @@ Sample Files in this project:
 
 * **garage-repo**: Chef / Cinc repo. Project: Create a *chef_handler* that will push information about all changed resources in a Chef / Cinc run to a PagerDuty change event.
 
-* **python**: some python scripts for working with the API. These make use of the pdpyras library https://github.com/PagerDuty/pdpyras
+* **python**: some python scripts for working with the API. These make use of the pagerduty library https://github.com/PagerDuty/pagerduty
   * Environment variables:
     * PD_API_KEY: valid API key for the PagerDuty API
     * PD_FROM_ADDR: valid from address that is in your account

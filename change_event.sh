@@ -29,7 +29,7 @@ EMAIL=$PD_FROM_ADDR
 # this is a SERVICE LEVEL integration
 # you need a different key for each destination service
 # https://youraccount.pagerduty.com/change-events
-KEY=""
+KEY=$PD_ROUTE_KEY
 
 data=$(cat <<EOF
   {
@@ -47,12 +47,10 @@ data=$(cat <<EOF
   }
 EOF
 )
-
+echo $data
 
 curl -X POST --header 'Content-Type: application/json' \
 --url https://events.pagerduty.com/v2/change/enqueue \
---header 'Accept: application/vnd.pagerduty+json;version=2' \
---header 'Authorization: Token token=$TOKEN' \
 --data "$data"
 
 echo
