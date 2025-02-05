@@ -7,7 +7,7 @@ Use the environment variables to supply the API Key.
 import os
 import sys
 import json
-import pdpyras
+import pagerduty
 
 # auth
 # find the api tokens in your account /api-keys
@@ -17,7 +17,7 @@ api_token = os.environ['PD_API_KEY']
 # the "from" address has to be valid for a user in your account
 from_address = os.environ['PD_FROM_ADDR']
 
-session = pdpyras.APISession(api_token, default_from=from_address)
+session = pagerduty.RestApiV2Client(api_token, default_from=from_address)
 
 # Step 1: get a list of incidents
 my_incidents = session.rget('/incidents')
@@ -31,7 +31,7 @@ for incident in my_incidents:
     # see https://developer.pagerduty.com/api-reference/bc1ec9fb359f8-get-outlier-incident
     try: 
       is_outlier = session.rget('/incidents/{}/outlier_incident'.format(id))
-    except pdpyras.PDHTTPError as e:
+    except pagerduty.HttpError as e:
        if e.response.status_code == 404:
           continue
           

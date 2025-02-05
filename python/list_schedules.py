@@ -4,7 +4,7 @@
 import sys
 import os
 import json
-from pdpyras import APISession
+from pagerduty import RestApiV2Client
 
 # auth
 # find the api tokens in your account /api-keys
@@ -12,7 +12,7 @@ from pdpyras import APISession
 api_token = os.environ['PD_API_KEY']
 
 # initialize the session
-session = APISession(api_token)
+session = RestApiV2Client(api_token)
 
 # you can pass the service ID on the command line or enter it at the prompt
 if len(sys.argv) < 2:

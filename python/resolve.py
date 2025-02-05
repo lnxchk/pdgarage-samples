@@ -14,7 +14,7 @@ Pass the service id on the command line or at the prompt.
 """
 
 import os
-from pdpyras import APISession
+from pagerduty import RestApiV2Client
 
 # set some example parameters to play with
 endpoint = "/incidents"
@@ -26,7 +26,7 @@ service_ids = []
 
 api_token = os.environ['PD_API_KEY']
 from_addr = os.environ['PD_FROM_ADDR']
-session = APISession(api_token, default_from=from_addr)
+session = RestApiV2Client(api_token, default_from=from_addr)
 
 # v1. this multi-update isn't working. see v2 below.
 # json_build = []

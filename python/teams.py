@@ -1,11 +1,11 @@
 import os
-from pdpyras import APISession
+from pagerduty import RestApiV2Client
 
 users = ["PM82RFK", "PQWNAVE"]
 team = 'PAKFPTY'
 
 api_token = os.environ['PD_API_KEY']
-session = APISession(api_token)
+session = RestApiV2Client(api_token)
 
 # teams = session.list_all(
 #     'teams',

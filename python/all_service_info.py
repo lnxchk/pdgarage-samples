@@ -16,7 +16,7 @@ https://developer.pagerduty.com/docs/ZG9jOjExMDI5NTgz-custom-change-event-transf
 
 import os
 import requests
-# from pdpyras import APISession, PDHTTPError
+# from pagerduty import RestApiV2Client, HttpError
 
 # auth
 # find the api tokens in your account /api-keys
@@ -26,7 +26,7 @@ api_token = os.environ['PD_API_KEY']
 # the "from" address has to be valid for a user in your account
 from_address = os.environ['PD_FROM_ADDR']
 
-# session = APISession(api_token, default_from=from_address)
+# session = RestApiV2Client(api_token, default_from=from_address)
 
 srv_input = input("Which service to query: ")
 

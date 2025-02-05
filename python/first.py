@@ -1,13 +1,13 @@
 
 import os
-from pdpyras import APISession
+from pagerduty import RestApiV2Client
 
 
 api_token = os.environ['PD_API_KEY']
 
 
 user = "USER ID"
-session = APISession(api_token)
+session = RestApiV2Client(api_token)
 
 # query the API and get the users in our PD account
 response = session.get('/users/{}'.format(user))

@@ -15,7 +15,7 @@ teams: https://developer.pagerduty.com/api-reference/0138639504311-list-teams
 """
 
 import os
-from pdpyras import APISession
+from pagerduty import RestApiV2Client
 
 # auth
 # find the api tokens in your account /api-keys
@@ -23,7 +23,7 @@ from pdpyras import APISession
 api_token = os.environ['PD_API_KEY']
 
 # initialize the session
-session = APISession(api_token)
+session = RestApiV2Client(api_token)
 teams_dict = {}
 
 

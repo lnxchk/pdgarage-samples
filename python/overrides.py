@@ -3,7 +3,7 @@
 
 import os
 import json
-from pdpyras import APISession
+from pagerduty import RestApiV2Client
 import requests
 from datetime import datetime, timedelta, timezone
 
@@ -13,7 +13,7 @@ from datetime import datetime, timedelta, timezone
 api_token = os.environ['PD_API_KEY']
 
 # initialize the session
-session = APISession(api_token)
+session = RestApiV2Client(api_token)
 
 BaseURL = "https://api.pagerduty.com/"
 headers = {

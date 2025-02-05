@@ -7,7 +7,7 @@ import os
 import json
 import requests
 from datetime import datetime
-from pdpyras import APISession
+from pagerduty import RestApiV2Client
 
 # auth
 # find the api tokens in your account /api-keys
@@ -15,7 +15,7 @@ from pdpyras import APISession
 api_token = os.environ['PD_API_KEY']
 
 # initialize the session
-session = APISession(api_token)
+session = RestApiV2Client(api_token)
 
 # you can pass the service ID on the command line or enter it at the prompt
 # if len(sys.argv) < 2:
@@ -38,17 +38,16 @@ s_id2 = "PPBBGDI"
 # endpoint = "/oncalls"
 # endpoint = "/oncalls?schedule_ids[]={}".format(s_id1)
 # endpoint = "/oncalls?schedule_ids[]={}&schedule_ids[]={}".format(s_id1, s_id2)
-endpoint = "/oncalls?schedule_ids[]=PPBBGDI"
-print(endpoint)
+endpoint = "/oncalls"
 
 # basic output, report with each service followed by its integrations.
 # For custom change event integrations, print the code. This is stored in the platform as-is.
 response = session.rget(endpoint)
 
-print(response)
+# print(response)
 
-# response_object = json.dumps(response, indent=2)
-# print(response_object)
+response_object = json.dumps(response, indent=2)
+print(response_object)
 
 # for ep in response:
 #    print(ep['escalation_policy']['id'], ep['user']['summary'], ep['end'])	

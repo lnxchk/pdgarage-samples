@@ -11,7 +11,7 @@ https://developer.pagerduty.com/api-reference/b3A6Mjc0ODE0Nw-list-log-entries-fo
 import os
 import sys
 import json
-from pdpyras import APISession
+from pagerduty import RestApiV2Client
 
 
 # auth
@@ -22,7 +22,7 @@ api_token = os.environ['PD_API_KEY']
 # the "from" address has to be valid for a user in your account
 from_address = os.environ['PD_FROM_ADDR']
 
-session = APISession(api_token, default_from=from_address)
+session = RestApiV2Client(api_token, default_from=from_address)
 
 if len(sys.argv) < 2:
   my_incident = input("Incident to show log entries for: ")
