@@ -5,12 +5,13 @@ TOKEN=$PD_API_KEY
 # valid email for a user in your PagerDuty account
 EMAIL=$PD_FROM_ADDR
 
-ENDPOINT=
+USERID=$1
+
+ENDPOINT="users/$USERID?include[]=teams"
 
 curl -X GET --header 'Content-Type: application/json' \
 --url https://api.pagerduty.com/$ENDPOINT \
 --header 'Accept: application/vnd.pagerduty+json;version=2' \
---header "From: $EMAIL" \
---header "Authorization: Token token=$TOKEN" 
+--header "Authorization: Token token=$TOKEN"
 
 echo

@@ -29,23 +29,12 @@ EMAIL=$PD_FROM_ADDR
 # https://youraccount.pagerduty.com/change-events
 KEY=$PD_ROUTE_KEY
 
+DEDUP_KEY=$PD_EVENT_DEDUP_KEY
 
-#data=$(cat <<EOF
-#  {
-#    "routing_key": "$KEY",
-#    "payload": {
-#      "summary": "Service 'nginx' is DOWN",
-#      "severity": "critical",
-#      "source": "host2.example.com"
-#    },
-#    "event_action": "trigger"
-#  }
-#EOF
-#)
 data=$(cat <<EOF
 {
   "payload": {
-    "summary": "nginx is not running on machine prod-datapipe03.example.com",
+    "summary": "nginx is STILL not running on machine prod-datapipe03.example.com",
     "severity": "critical",
     "source": "prod-datapipe03.example.com",
     "component": "nginx",
@@ -53,6 +42,7 @@ data=$(cat <<EOF
     "class": "service"
   },
   "routing_key": "$KEY",
+  "dedup_key": "$DEDUP_KEY",
   "event_action": "trigger",
   "client": "Sample Monitoring Service",
   "client_url": "https://monitoring.service.com"
