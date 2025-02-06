@@ -1,15 +1,16 @@
 #!/usr/bin/env bash
-# Get all the services in the account
+# Get a user's log entries
 
 # Your token. This is an Account-level credential
 # https://youraccount.pagerduty.com/api_keys
 TOKEN=$PD_API_KEY
 
-ENDPOINT="services"
+USER=$1
+ENDPOINT="users/$USER/log_entries"
 
 curl -X GET --header 'Content-Type: application/json' \
 --url https://api.pagerduty.com/$ENDPOINT \
 --header 'Accept: application/vnd.pagerduty+json;version=2' \
---header "Authorization: Bearer $TOKEN"
+--header "Authorization: Token token=$TOKEN" 
 
 echo

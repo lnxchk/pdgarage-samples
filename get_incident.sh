@@ -1,15 +1,21 @@
 #!/usr/bin/env bash
-# Get all the services in the account
+# Get a single incident
+# Pass the incident ID on the command line
 
 # Your token. This is an Account-level credential
 # https://youraccount.pagerduty.com/api_keys
 TOKEN=$PD_API_KEY
 
-ENDPOINT="services"
+# valid email for a user in your PagerDuty account
+EMAIL=$PD_FROM_ADDR
+INCIDENT_ID=$1
+
+ENDPOINT="/incidents/$INCIDENT_ID"
 
 curl -X GET --header 'Content-Type: application/json' \
 --url https://api.pagerduty.com/$ENDPOINT \
 --header 'Accept: application/vnd.pagerduty+json;version=2' \
---header "Authorization: Bearer $TOKEN"
+--header "From: $EMAIL" \
+--header "Authorization: Token token=$TOKEN" 
 
 echo

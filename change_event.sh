@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # EXAMPLE:
 # create a generic change event on a service.
 
@@ -29,7 +30,8 @@ EMAIL=$PD_FROM_ADDR
 # this is a SERVICE LEVEL integration
 # you need a different key for each destination service
 # https://youraccount.pagerduty.com/change-events
-KEY=$PD_ROUTE_KEY
+# KEY=$PD_ROUTE_KEY
+KEY=$1
 
 data=$(cat <<EOF
   {

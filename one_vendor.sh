@@ -1,15 +1,15 @@
-#!/usr/bin/env bash
-# Get all the services in the account
-
 # Your token. This is an Account-level credential
 # https://youraccount.pagerduty.com/api_keys
 TOKEN=$PD_API_KEY
 
-ENDPOINT="services"
+# valid email for a user in your PagerDuty account
+EMAIL=$PD_FROM_ADDR
+
+ENDPOINT="vendors/PULN1LU"
 
 curl -X GET --header 'Content-Type: application/json' \
 --url https://api.pagerduty.com/$ENDPOINT \
 --header 'Accept: application/vnd.pagerduty+json;version=2' \
---header "Authorization: Bearer $TOKEN"
+--header "Authorization: Token token=$TOKEN" 
 
 echo

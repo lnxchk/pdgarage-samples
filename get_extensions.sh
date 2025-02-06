@@ -1,15 +1,12 @@
 #!/usr/bin/env bash
-# Get all the services in the account
+# get a list of all extensions installed on your PagerDuty account.
 
 # Your token. This is an Account-level credential
 # https://youraccount.pagerduty.com/api_keys
 TOKEN=$PD_API_KEY
-
-ENDPOINT="services"
-
 curl -X GET --header 'Content-Type: application/json' \
---url https://api.pagerduty.com/$ENDPOINT \
+--url https://api.pagerduty.com/extensions \
 --header 'Accept: application/vnd.pagerduty+json;version=2' \
---header "Authorization: Bearer $TOKEN"
+--header "Authorization: Token token=$TOKEN" 
 
 echo
