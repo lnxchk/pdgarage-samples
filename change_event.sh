@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # EXAMPLE:
 # create a generic change event on a service.
 
@@ -22,16 +23,16 @@ BUILD_NUMBER=`date +%s`
 
 # Your token. This is an Account-level credential
 # https://youraccount.pagerduty.com/api_keys
-TOKEN=".+............nBfzBQ"
+TOKEN=$PD_API_KEY
 
 # valid email for a user in your PagerDuty account
-EMAIL="user@mail.com"
+EMAIL=$PD_FROM_ADDR
 
 # integration key
 # this is a SERVICE LEVEL integration
 # you need a different key for each destination service
 # https://youraccount.pagerduty.com/change-events
-KEY="289..........................916"
+KEY=$1
 
 cat <<EOF
 curl -X POST --header 'Content-Type: application/json' \
