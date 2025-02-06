@@ -1,0 +1,10 @@
+name 'pagerduty-handler'
+maintainer 'The Authors'
+maintainer_email 'you@example.com'
+license 'All Rights Reserved'
+description 'Installs/Configures pagerduty-handler'
+version '0.1.0'
+chef_version '>= 15.3'
+
+# issues_url 'https://github.com/<insert_org_here>/pagerduty-handler/issues'
+# source_url 'https://github.com/<insert_org_here>/pagerduty-handler'

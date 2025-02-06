@@ -1,0 +1,1 @@
+Anyone know of a good way to get a Slack message every time there’s a handoff in a PD rotation?

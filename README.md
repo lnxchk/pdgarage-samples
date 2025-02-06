@@ -1,5 +1,3 @@
-
-
 # Sample scripts for accessing parts of the PagerDuty API
 Many of these pieces were inspired by questions in our [Community Forums](https://community.pagerduty.com)
 
@@ -43,15 +41,12 @@ Most of these scripts take arguments on the command line if arguments are needed
 * **resolve_incident.sh**: Resolve a specific incident. Pass the incident ID on the command line.
 * 
 
-
-
-* **change_events.rb** (September 13, 20): Ruby script to create change events on a PagerDuty service. Similar to the shell script above, change the *service_key* and *account_token* variables for your account.
-
-* **incident.sh**: Shell script to create a single incident on a service. To use this script, change the token to be your api_key, the from: address to an email address associated with your account, and the ID of the service to a service in your account.
-
 ### Python
+Some python scripts for working with the API. These make use of the [pagerduty library](https://github.com/PagerDuty/python-pagerduty).
 
-* **python**: some python scripts for working with the API. These make use of the pagerduty library https://github.com/PagerDuty/pagerduty
-  * Environment variables:
-    * PD_API_KEY: valid API key for the PagerDuty API
-    * PD_FROM_ADDR: valid from address that is in your account
+These use the same environment variables for authentication that the bash scripts use:
+* `PD_API_KEY`: your PagerDuty [API Key](https://developer.pagerduty.com/docs/authentication)
+* `PD_FROM_ADDR`: an email address associated with a PagerDuty user account. This will attribute any changes to that user.
+
+**Scripts were mostly written against python 3.8 or 3.12.**
+

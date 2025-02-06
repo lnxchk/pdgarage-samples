@@ -1,0 +1,14 @@
+{
+  "payload": {
+    "summary": "application issue on cartbe01.example.com",
+    "severity": "critical",
+    "source": "cartbe01.example.com",
+    "component": "shoppingcart",
+    "group": "fab-shop",
+    "class": "service"
+  },
+  "routing_key": "$ROUTING_GLOBAL",
+  "event_action": "trigger",
+  "client": "Sample Monitoring Service",
+  "client_url": "https://monitoring.service.com"
+}
