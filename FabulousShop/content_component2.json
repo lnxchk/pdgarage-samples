@@ -1,0 +1,14 @@
+{
+  "payload": {
+    "summary": "alert from HostA for java",
+    "severity": "critical",
+    "source": "hosta",
+    "component": null,
+    "group": "prod-datapipe",
+    "class": "service"
+  },
+  "routing_key": "$PD_ROUTE_KEY",
+  "event_action": "trigger",
+  "client": "Sample Monitoring Service",
+  "client_url": "https://monitoring.service.com"
+}

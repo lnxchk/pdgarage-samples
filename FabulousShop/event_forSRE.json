@@ -1,0 +1,14 @@
+{
+  "payload": {
+    "summary": "CPU Utilization is high on host03",
+    "severity": "critical",
+    "source": "prod-datapipe03.example.com",
+    "component": "nginx",
+    "group": "prod-datapipe",
+    "class": "service"
+  },
+  "routing_key": "$GLOBAL_ROUTING",
+  "event_action": "trigger",
+  "client": "Sample Monitoring Service",
+  "client_url": "https://monitoring.service.com"
+}

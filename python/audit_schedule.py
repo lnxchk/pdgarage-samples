@@ -1,9 +1,13 @@
+<<<<<<< HEAD
 #!/usr/bin/env python3
 """
 Audit Schedule
 
 Show the record of changes that have been made to a schedule
 
+=======
+"""
+>>>>>>> 68b2cb9e09cf23ea25b561a290b39628cf1aab5f
 """
 
 import sys

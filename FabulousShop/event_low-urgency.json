@@ -1,0 +1,14 @@
+{
+  "payload": {
+    "summary": "nginx is not running on machine prod-datapipe03.example.com",
+    "severity": "info",
+    "source": "prod-datapipe03.example.com",
+    "component": "nginx",
+    "group": "prod-datapipe",
+    "class": "service"
+  },
+  "routing_key": "$PD_ROUTE_KEY",
+  "event_action": "trigger",
+  "client": "Sample Monitoring Service",
+  "client_url": "https://monitoring.service.com"
+}

@@ -1,0 +1,14 @@
+{
+  "payload": {
+    "summary": "/var/log is 99% full",
+    "severity": "critical",
+    "source": "prod-datapipe03.example.com",
+    "component": "disk",
+    "group": "prod-datapipe",
+    "class": "system"
+  },
+  "routing_key": "$PD_ROUTE_KEY",
+  "event_action": "trigger",
+  "client": "Sample Monitoring Service",
+  "client_url": "https://monitoring.service.com"
+}

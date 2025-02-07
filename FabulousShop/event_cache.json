@@ -1,0 +1,14 @@
+{
+  "payload": {
+    "summary": "error on cache machine prod-cache01",
+    "severity": "critical",
+    "source": "prod-cache01.example.com",
+    "component": "cache",
+    "group": "fab-shop",
+    "class": "service"
+  },
+  "routing_key": "$ROUTING_GLOBAL",
+  "event_action": "trigger",
+  "client": "Sample Monitoring Service",
+  "client_url": "https://monitoring.service.com"
+}

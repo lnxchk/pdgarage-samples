@@ -1,5 +1,3 @@
-
-
 # Sample scripts for accessing parts of the PagerDuty API
 Many of these pieces were inspired by questions in our [Community Forums](https://community.pagerduty.com)
 
@@ -43,9 +41,20 @@ Most of these scripts take arguments on the command line if arguments are needed
 * **one_vendor.sh**: Get information about a single integration vendor. Pass the vendor ID on the command line.
 * **resolve_incident.sh**: Resolve a specific incident. Pass the incident ID on the command line.
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 68b2cb9e09cf23ea25b561a290b39628cf1aab5f
 ### Python
+Some python scripts for working with the API. These make use of the [pagerduty library](https://github.com/PagerDuty/python-pagerduty).
 
+These use the same environment variables for authentication that the bash scripts use:
+* `PD_API_KEY`: your PagerDuty [API Key](https://developer.pagerduty.com/docs/authentication)
+* `PD_FROM_ADDR`: an email address associated with a PagerDuty user account. This will attribute any changes to that user.
+
+**Scripts were mostly written against python 3.8 or 3.12.**
+
+<<<<<<< HEAD
 Some python scripts for working with the API. Most of these make use of the [pagerduty library](https://github.com/PagerDuty/python-pagerduty), though some also use libraries like `requests` instead as a separate example.
 
 These use the same environment variables for authentication that the bash scripts use:
@@ -65,3 +74,5 @@ These use the same environment variables for authentication that the bash script
 * **create_and_assign.py**: Create an incident and assign a responder. Pass the service ID and the responder's user ID on the command line
 * **
 * 
+=======
+>>>>>>> 68b2cb9e09cf23ea25b561a290b39628cf1aab5f
