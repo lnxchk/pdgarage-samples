@@ -1,11 +1,12 @@
+#!/usr/bin/env python3
 """
-use the analytics endpoints to retrieve raw incident data 
+Analytics Query
+Use the analytics endpoints to retrieve raw incident data 
 based on a requested team.
 
 See more about the analytics endpoints at
 https://developer.pagerduty.com/
 """
-import json
 import os
 import sys
 # import datetime, need timezone for Python 3.12+
@@ -58,5 +59,3 @@ resolved_incidents = session.rpost(
 print(resolved_incidents)
 for incident in resolved_incidents['data']:
     print("{},{},{}".format(incident['id'], incident['incident_number'], incident['description'] ))
-
-

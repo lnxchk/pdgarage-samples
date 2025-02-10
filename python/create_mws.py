@@ -1,10 +1,12 @@
-# create maintenance windows
+#!/usr/bin/env python3
+"""
+Create maintenance windows
 
-# required info:
-# service ID
-# maintenance window start time
-# maintenance window end time
-
+Required info:
+ * service ID
+ * maintenance window start time
+ * maintenance window end time
+"""
 # docs: https://developer.pagerduty.com/api-reference/a450bc9b9ea6f-create-a-maintenance-window
 import os
 import requests

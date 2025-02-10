@@ -1,4 +1,9 @@
+#!/usr/bin/env python3
 """
+Audit Schedule
+
+Show the record of changes that have been made to a schedule
+
 """
 
 import sys

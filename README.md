@@ -34,13 +34,17 @@ Most of these scripts take arguments on the command line if arguments are needed
 * **get_schedule.sh**: Get a single schedule. Pass the schedule ID on the command line. 
 * **get_sched_since.sh**: Get the entries for a specific on call schedule over the last 30 days. Pass the schedule ID on the command line.
 * **get_services.sh**: Get all the services on the account. Not paginated. Requires only `PD_API_KEY`.
+* **get_service_ep.sh**: Get a service, and include the escalation policies associated with that service. Pass the service ID on the command line.
 * **get_userlog.sh**: Get the log entries for the requested user. Pass the user ID on the command line.
 * **get_users.sh**: Get the users on a team. Pass the team ID on the command line. Requires only `PD_API_KEY`.
 * **mass_resolve.sh**: Not sure this one works. Resolve multiple incidents in the same request. Add incident IDs *to the script*, not set up for arguments.
 * **one_vendor.sh**: Get information about a single integration vendor. Pass the vendor ID on the command line.
 * **resolve_incident.sh**: Resolve a specific incident. Pass the incident ID on the command line.
-* 
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 68b2cb9e09cf23ea25b561a290b39628cf1aab5f
 ### Python
 Some python scripts for working with the API. These make use of the [pagerduty library](https://github.com/PagerDuty/python-pagerduty).
 
@@ -50,3 +54,25 @@ These use the same environment variables for authentication that the bash script
 
 **Scripts were mostly written against python 3.8 or 3.12.**
 
+<<<<<<< HEAD
+Some python scripts for working with the API. Most of these make use of the [pagerduty library](https://github.com/PagerDuty/python-pagerduty), though some also use libraries like `requests` instead as a separate example.
+
+These use the same environment variables for authentication that the bash scripts use:
+* `PD_API_KEY`: your PagerDuty [API Key](https://developer.pagerduty.com/docs/authentication)
+* `PD_FROM_ADDR`: an email address associated with a PagerDuty user account. This will attribute any changes to that user.
+
+**Scripts were mostly written against python 3.8 or 3.12.**
+
+* **ack_and_assign.py**: Acknowledge an incident and add a responder. Pass the incident ID and user ID of the responder on the command line
+* **ack.py**: Basic acknowledge. Pass the incident ID on the command line
+* **all_log_entries.py**: Get the log entries. The log records incident events across the entire account. Example not paginated, but endpoint provides pagination.
+* **all_service_deps.py**: Get the immediate service dependencies of a service. Requests service ID as input. Does not traverse the dependency tree.
+* **all_service_integrations.py**: Get all the services in an account, include the information about their integrations. Print out the service name, service ID, and select information about each integration.
+* **analytics_query.py**: Request incident data from the analytics endpoint. Requests a team ID from input or command line. Example query options for urgency and time window. 
+* **audit_schedule.py**: Show the record of changes that have been made to a schedule. Pass the schedule ID on the command line or input it at the prompt
+* **
+* **create_and_assign.py**: Create an incident and assign a responder. Pass the service ID and the responder's user ID on the command line
+* **
+* 
+=======
+>>>>>>> 68b2cb9e09cf23ea25b561a290b39628cf1aab5f
