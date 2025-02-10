@@ -1,5 +1,6 @@
+#!/usr/bin/env python3
 """
-Service Relationships
+Create Business Service Dependency
 
 Create a dependency between two services
 
@@ -20,6 +21,7 @@ from_address = os.environ['PD_FROM_ADDR']
 supporting_service = input("Enter the ID of the supporting service: ")
 dependent_service = input("Enter the ID of the dependent service: ")
 
+# create the payload to send to the API
 data = {
     "relationships": [
         {

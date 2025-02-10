@@ -1,7 +1,12 @@
+#!/usr/bin/env python3
 """
+Bump Incidents High Urgency
+
+Bump all incidents on a given service to high urgency.
+
+May be helpful for services using support hours or other configurations.
 """
 
-import json
 import os
 import sys
 from pagerduty import RestApiV2Client
@@ -24,8 +29,6 @@ else:
     this_service = str(sys.argv[1])
 
 endpoint = "/incidents?service_ids[]={}&statuses[]=triggered".format(this_service)
-# basic output, report with each service followed by its integrations.
-# For custom change event integrations, print the code. This is stored in the platform as-is.
 for incident in session.iter_all(endpoint):
     incident['urgency'] = "high"
     put_endpoint = "/incidents/{}".format(incident['id'])
