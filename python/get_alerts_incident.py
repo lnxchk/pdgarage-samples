@@ -1,4 +1,8 @@
+#!/usr/bin/env python3
 """
+
+Get all alerts associated with a specific incident.
+
 """
 
 import sys

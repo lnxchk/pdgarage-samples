@@ -1,7 +1,9 @@
+#!/usr/bin/env python3
 """
-some playing around with the incidents endpoint
+Get all incidents, with some parameters.
 
-you'll need a valid API token and from: address
+Includes basic pagination.
+
 """
 
 import os
@@ -9,11 +11,6 @@ import json
 from datetime import datetime, timedelta
 from pagerduty import RestApiV2Client
 
-# example using curl:
-# --url 'https://api.pagerduty.com/incidents?date_range=all&urgencies%5B%5D=high&statuses%5B%5D=triggered&include%5B%5D=users&service_ids%5B%5D=.......' \
-# --header 'Accept: application/vnd.pagerduty+json;version=2' \
-# --header 'Authorization: Token token=.+..................' \
-# --header 'Content-Type: application/json'
 
 # set some example parameters to play with
 endpoint = "/incidents"
