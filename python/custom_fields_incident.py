@@ -1,7 +1,11 @@
+#!/usr/bin/env python3
 """
+Fetch the custom fields on a specific incident.
+
+Include the incident ID on the command line or enter it at the prompt.
+
 """
 
-import json
 import os
 import sys
 from pagerduty import RestApiV2Client
@@ -15,18 +19,13 @@ api_token = os.environ['PD_API_KEY']
 session = RestApiV2Client(api_token)
 
 # you can pass the service ID on the command line or enter it at the prompt
-# if len(sys.argv) < 2:
-#     this_service = input("Which service? ")
-# else:
-#     this_service = str(sys.argv[1])
+if len(sys.argv) < 2:
+    incident = input("Which incident? ")
+else:
+    incident = str(sys.argv[1])
 
 print()
 
-endpoint = "https://api.pagerduty.com/incidents/Q3VWC94BBW87BA/custom_fields/values"
-# basic output, report with each service followed by its integrations.
-# For custom change event integrations, print the code. This is stored in the platform as-is.
+endpoint = f"https://api.pagerduty.com/incidents/{incident}/custom_fields/values"
 response = session.get(endpoint)
 print(response.text)
-
-# response_object = json.dumps(response, indent=2)
-# print(response_object)

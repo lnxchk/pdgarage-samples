@@ -1,4 +1,8 @@
+#!/usr/bin/env python3
 """
+Walk the service graph of a particular PagerDuty business service.
+
+Pass the service ID on the command line or enter it at the prompt.
 """
 
 import os
@@ -88,7 +92,7 @@ def get_biz_serv_name(id):
 if __name__ == '__main__':
     # you can pass the service ID on the command line or enter it at the prompt
     if len(sys.argv) < 2:
-        this_service = input("Which service? ")
+        this_service = input("Which business service? ")
     else:
         this_service = str(sys.argv[1])
 

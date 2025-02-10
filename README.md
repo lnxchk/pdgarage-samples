@@ -41,21 +41,9 @@ Most of these scripts take arguments on the command line if arguments are needed
 * **one_vendor.sh**: Get information about a single integration vendor. Pass the vendor ID on the command line.
 * **resolve_incident.sh**: Resolve a specific incident. Pass the incident ID on the command line.
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 68b2cb9e09cf23ea25b561a290b39628cf1aab5f
 ### Python
 Some python scripts for working with the API. These make use of the [pagerduty library](https://github.com/PagerDuty/python-pagerduty).
-
-These use the same environment variables for authentication that the bash scripts use:
-* `PD_API_KEY`: your PagerDuty [API Key](https://developer.pagerduty.com/docs/authentication)
-* `PD_FROM_ADDR`: an email address associated with a PagerDuty user account. This will attribute any changes to that user.
-
-**Scripts were mostly written against python 3.8 or 3.12.**
-
-<<<<<<< HEAD
-Some python scripts for working with the API. Most of these make use of the [pagerduty library](https://github.com/PagerDuty/python-pagerduty), though some also use libraries like `requests` instead as a separate example.
 
 These use the same environment variables for authentication that the bash scripts use:
 * `PD_API_KEY`: your PagerDuty [API Key](https://developer.pagerduty.com/docs/authentication)
@@ -70,9 +58,17 @@ These use the same environment variables for authentication that the bash script
 * **all_service_integrations.py**: Get all the services in an account, include the information about their integrations. Print out the service name, service ID, and select information about each integration.
 * **analytics_query.py**: Request incident data from the analytics endpoint. Requests a team ID from input or command line. Example query options for urgency and time window. 
 * **audit_schedule.py**: Show the record of changes that have been made to a schedule. Pass the schedule ID on the command line or input it at the prompt
-* **
+* **bump_incidents_high_urgency.py**: Bump all triggered incidents on a given service to high urgency. This can trigger new workflows and other functions depending on your setup. Pass the service ID on the command line or input it at the prompt.
 * **create_and_assign.py**: Create an incident and assign a responder. Pass the service ID and the responder's user ID on the command line
-* **
+* **create_bizserv_deps.py**: Create a dependency relationship between two business services, as an example. Enter the service IDs at the prompts.
+* **create_mws.py**: Create maintenance windows. This prompts for the needed info and builds the timestamps.
+* **create_service_deps.py**: Similar to `create_bizserv_deps.py`, creates a dependency relationship between two services. This script allows a technical service to be a dependency of a business service. Enter the service IDs at the prompts.
+* **custom_fields_incident.py**: Fetch the custom fields included in a specific incident. Pass the incident ID on the command line or enter it at the prompt. Command line is better if planning to use an output parser like `jq`.
+* **ep_audit.py**: From a forums question. Query the API for teams in your PagerDuty account, and then determine which teams do not have an escalation policy. Escalation Policies and teams don't necessarily have a relationship, and there is no requirement for a team to have an EP. 
+* **event_orch_delete.py**: Another from a forums question. This one queries the API for all Event Orchestrations on the account, presents the rules to the first EO to the user, and prompts for a rule to delete. Could use some work to account for many EOs on an account.
+* **event_sample.py**: Send a basic event to the events API. Requires a routing key stored in the `PD_ROUTE_KEY` environment variable.
+* **find_dependent_services.py**: Walk the service graph of a particular PagerDuty business service. Pass the service ID on the command line or enter it at the prompt.
+* **full_service.py**: Service query including example parameters and output parsing. Pass the service ID on the command line or enter it at the prompt.
+* **get_alerts_and_notes.py**: Finding the notes and alerts attached to a service that meets a specific requirement. Basic example, could be honed to specific teams, services, etc.
 * 
-=======
->>>>>>> 68b2cb9e09cf23ea25b561a290b39628cf1aab5f
+* 

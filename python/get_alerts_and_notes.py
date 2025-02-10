@@ -1,7 +1,11 @@
+#!/usr/bin/python3
 """
+Query open incidents and display notes and alerts meeting a specific requirement.
+
+The example matches "searchbe01" in the incident title.
+
 """
 
-import json
 import os
 from pagerduty import RestApiV2Client
 
@@ -13,15 +17,10 @@ api_token = os.environ['PD_API_KEY']
 # initialize the session
 session = RestApiV2Client(api_token)
 
-# you can pass the service ID on the command line or enter it at the prompt
-# if len(sys.argv) < 2:
-#     this_service = input("Which service? ")
-# else:
-#     this_service = str(sys.argv[1])
-
 print()
 
-# Step 1: retrieve all incidents
+# Step 1: retrieve all incidents - sharpen this query to reduce number of responses.
+#  Examples: Limit to certain teams. Limit to certain services. Limit to certain states.
 endpoint = "/incidents"
 response = session.rget(endpoint)
 
