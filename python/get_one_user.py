@@ -1,4 +1,7 @@
+#!/usr/bin/env python3
 """
+Get info on a single user
+Pass the user ID on the command line or enter it at the prompt
 """
 
 import json
@@ -24,8 +27,6 @@ print()
 
 endpoint = f"/users/{this_user}"
 print(endpoint)
-# basic output, report with each service followed by its integrations.
-# For custom change event integrations, print the code. This is stored in the platform as-is.
 response = session.rget(endpoint)
 
 response_object = json.dumps(response, indent=2)

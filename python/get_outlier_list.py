@@ -1,12 +1,12 @@
+#!/usr/bin/env python3
 """
 Determine if an incident is an anomaly via the API
+https://support.pagerduty.com/main/docs/outlier-incident
 
 Use the environment variables to supply the API Key.
 
 """
 import os
-import sys
-import json
 import pagerduty
 
 # auth
@@ -20,7 +20,7 @@ from_address = os.environ['PD_FROM_ADDR']
 session = pagerduty.RestApiV2Client(api_token, default_from=from_address)
 
 # Step 1: get a list of incidents
-my_incidents = session.rget('/incidents')
+my_incidents = session.rget('/incidents?statuses[]=triggered&statuses[]=acknowledged')
 
 for incident in my_incidents:
     id = incident['id']

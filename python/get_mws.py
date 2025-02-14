@@ -1,4 +1,7 @@
+#!/usr/bin/env python3
 """
+Get a list of currently active maintenance windows
+
 """
 
 import sys
@@ -13,17 +16,10 @@ api_token = os.environ['PD_API_KEY']
 # initialize the session
 session = RestApiV2Client(api_token)
 
-# you can pass the service ID on the command line or enter it at the prompt
-# if len(sys.argv) < 2:
-#     this_service = input("Which service? ")
-# else:
-#     this_service = str(sys.argv[1])
-
 print()
 
-endpoint = "maintenance_windows"
-# basic output, report with each service followed by its integrations.
-# For custom change event integrations, print the code. This is stored in the platform as-is.
+# several filters available for this query. see the docs for more info
+endpoint = "maintenance_windows?filter=ongoing"
 response = session.rget(endpoint)
 
 # print(response)

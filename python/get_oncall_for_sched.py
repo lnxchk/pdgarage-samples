@@ -1,5 +1,8 @@
-#!/usr/local/bin/python3
+#!/usr/bin/env python3
 """
+Get all responders included in a schedule
+
+Pass the schedule ID on the command line or enter it at the prompt
 """
 
 import sys
@@ -21,10 +24,14 @@ if len(sys.argv) < 2:
 else:
     this_sched = str(sys.argv[1])
 
+# option 1: get all the users on a schedule
 endpoint = "/schedules/{}/users".format(this_sched)
-# basic output, report with each service followed by its integrations.
-# For custom change event integrations, print the code. This is stored in the platform as-is.
 response = session.rget(endpoint)
+
+# option 2: use the /oncalls endpoint to find their shifts
+# the info is similar but not exactly the same.
+# endpoint = "/oncalls"
+# response = session.rget(endpoint, params={'schedule_ids[]': this_sched})
 
 # print(response)
 response_object = json.dumps(response, indent=2)
