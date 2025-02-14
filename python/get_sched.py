@@ -1,6 +1,11 @@
-#!/usr/local/bin/python3
+#!/usr/bin/env python3
 """
+Query the /schedules/ endpoint with a time frame example
+
+Pass the schedule ID on the command line or enter it at the prompt
+Time frame defaults to the next four weeks of schedule
 """
+
 
 import sys
 import os
@@ -27,8 +32,6 @@ later_time = now_time + timedelta(28)
 created_at_start = now_time.strftime("%Y-%m-%dT%H:%M:%S%z")
 created_at_end = later_time.strftime("%Y-%m-%dT%H:%M:%S%z")
 endpoint = "/schedules/{}".format(this_sched)
-# basic output, report with each service followed by its integrations.
-# For custom change event integrations, print the code. This is stored in the platform as-is.
 response = session.rget(endpoint, params={'since':created_at_start, 'until':created_at_end})
 
 # print(response)

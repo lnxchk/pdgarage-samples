@@ -1,7 +1,11 @@
-"""
+#!/usr/bin/env python3
 """
 
-import sys
+Find any users on the account who are not assigned to any oncall responsibilities
+
+This was a question in the forums.
+"""
+
 import os
 from pagerduty import RestApiV2Client
 
@@ -15,11 +19,10 @@ session = RestApiV2Client(api_token)
 
 # get the user list
 endpoint = "/users"
-# basic output, report with each service followed by its integrations.
-# For custom change event integrations, print the code. This is stored in the platform as-is.
 response = session.rget(endpoint)
 
 # print(response)
+# The /oncalls endpoint surfaces all on call entries for a user
 for user in response:
     all_oncalls = session.rget("/oncalls?user_ids[]={}".format(user['id']))
     if not all_oncalls:

@@ -1,4 +1,8 @@
+#!/usr/bin/env python3
 """
+Get a single escalation policy from the PagerDuty account
+
+Pass the escalation policy ID on the command line or enter it at the prompt
 """
 
 import sys
@@ -15,16 +19,15 @@ api_token = os.environ['PD_API_KEY']
 session = RestApiV2Client(api_token)
 
 # you can pass the service ID on the command line or enter it at the prompt
-# if len(sys.argv) < 2:
-#     this_service = input("Which service? ")
-# else:
-#     this_service = str(sys.argv[1])
+if len(sys.argv) < 2:
+  esc_pol = input("Which escalation policy? ")
+else:
+  esc_pol = str(sys.argv[1])
 
 print()
 
-endpoint = "escalation_policies/P6F7EI2"
-# basic output, report with each service followed by its integrations.
-# For custom change event integrations, print the code. This is stored in the platform as-is.
+# build request
+endpoint = f"escalation_policies/{esc_pol}/"
 response = session.rget(endpoint)
 
 # print(response)

@@ -1,5 +1,7 @@
-#!/usr/local/bin/python3
+#!/usr/bin/env python3
 """
+Some example queries for the /oncalls endpoint
+
 """
 
 # import sys
@@ -17,12 +19,6 @@ api_token = os.environ['PD_API_KEY']
 # initialize the session
 session = RestApiV2Client(api_token)
 
-# you can pass the service ID on the command line or enter it at the prompt
-# if len(sys.argv) < 2:
-#     this_service = input("Which service? ")
-# else:
-#     this_service = str(sys.argv[1])
-
 
 month_beg = '2022-08-01T00:00:00Z'
 month_end = '2022-08-31T23:59:59Z'
@@ -31,8 +27,8 @@ month_end_time = datetime.strptime(month_end, '%Y-%m-%dT%H:%M:%SZ')
 
 # print(month_beg_time, month_end_time)
 
-s_id1 = "PCO0XEZ"
-s_id2 = "PPBBGDI"
+# s_id1 = "XXXXXXX"
+# s_id2 = "XXXXXXX"
 
 # endpoint = "/oncalls?since={}&until={}".format(month_beg_time, month_end_time)
 # endpoint = "/oncalls"
