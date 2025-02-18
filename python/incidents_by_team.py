@@ -1,11 +1,13 @@
+#!/usr/bin/env python3
 """
 https://community.pagerduty.com/forum/t/get-incident-count-by-team-for-particular-period/3827
+
+Query the incidents endpoint to gather incident info for a specific team during a specific time frame.
 """
 
 import sys
 import os
 import requests
-import json
 from datetime import datetime, timedelta
 
 
@@ -49,12 +51,4 @@ for n in range(30, 60):
     IncidentCount = GetIncidentCount(DateSince, my_team)
     ResultsRetStr = "{} days - {} incidents".format(n, IncidentCount)
     print(ResultsRetStr)
-# since = datetime.utcnow().date() - timedelta(42)
-# today = datetime.utcnow().date()
-# querystring = {"since": since, "team_ids[]": my_team, "total": True, "until": today}
-# url = BaseURL + "incidents/"
-# response = requests.get(url, headers=headers, params=querystring)
-# # print(response.text)
-#
-# for i in response.json()['incidents']:
-#     print(i['incident_number'])
+

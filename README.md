@@ -7,7 +7,7 @@ None of these are *guaranteed* to work. Many of them do; they are intended as ex
 
 ### Bash
 Unless otherwise specified, these scripts require two environment variables:
-* `PD_API_KEY`: your PagerDuty [API Key](https://developer.pagerduty.com/docs/authentication)
+* `PD_API_KEY`: your PagerDuty [API Key](https://developer.pagerduty.com/docs/authentication). Since these scripts touch a lot of different objects, they use a generic global key.
 * `PD_FROM_ADDR`: an email address associated with a PagerDuty user account. This will attribute any changes to that user.
 
 Most of these scripts take arguments on the command line if arguments are needed. Because the return document will be JSON, you can pipe the output to a parser like `jq` to improve human readability. 
@@ -46,7 +46,7 @@ Most of these scripts take arguments on the command line if arguments are needed
 Some python scripts for working with the API. These make use of the [pagerduty library](https://github.com/PagerDuty/python-pagerduty).
 
 These use the same environment variables for authentication that the bash scripts use:
-* `PD_API_KEY`: your PagerDuty [API Key](https://developer.pagerduty.com/docs/authentication)
+* `PD_API_KEY`: your PagerDuty [API Key](https://developer.pagerduty.com/docs/authentication). Like the bash scripts, these touch a lot of different objects, so use a generic global API key.
 * `PD_FROM_ADDR`: an email address associated with a PagerDuty user account. This will attribute any changes to that user.
 
 **Scripts were mostly written against python 3.8 or 3.12.**
@@ -70,5 +70,27 @@ These use the same environment variables for authentication that the bash script
 * **find_dependent_services.py**: Walk the service graph of a particular PagerDuty business service. Pass the service ID on the command line or enter it at the prompt.
 * **full_service.py**: Service query including example parameters and output parsing. Pass the service ID on the command line or enter it at the prompt.
 * **get_alerts_and_notes.py**: Finding the notes and alerts attached to a service that meets a specific requirement. Basic example, could be honed to specific teams, services, etc.
-* 
-* 
+* **get_alerts_incident.py**: Get all of the incidents associated with a specific incident. Pass the incident ID on the command line or enter it at the prompt. Returns JSON of the alerts.
+* **get_all_incidents.py**: Get all incidents, with example parameters. Includes basic pagination.
+* **get_all_oncalls.py**: Get all of the on call responders in a PagerDuty account. Doesn't de-dupe the escalation policies in the case that multiple responders are oncall.
+* **get_all_users_token.py**: Get all of the users on an account using a user token, rather than a global API key.
+* **get_all_users.py**: Get all the users on an account. Uses the global `PD_API_KEY`. Outputs JSON.
+* **get_deleted_user.py**: Forum question. Looking for a deleted user in an on call schedule. Queries for all schedules in the account. Prints out a specific message, not account object data. Deleted users show up in historical and analytics data about the schedule.
+* **get_escpol.py**: Get an escalation policy. Enter the ID on the command line or at the prompt.
+* **get_incident.py**: Basic incident retrieval. Pass the incident ID on the command line or enter it at the prompt.
+* **get_incidents_b.py**: Sample showing more advanced options to query the `/incidents` endpoint.
+* **get_mws.py**: Get maintenance window IDs. Building block for other code.
+* **get_no_oncalls.py**: Find users who have no oncall assignments. Similar queries can be used to show all oncall shifts for a given user.
+* **get_oncall_for_sched.py**: Get all responders included in a schedule. Pass the schedule ID on the command line or enter it at the prompt. Includes a couple of query options, depending on what you want to see.
+* **get_oncalls.py**: sets up some example queries for the `/oncalls` endpoint, including using `since` and `until`.
+* **get_one_user.py**: Gets all the info about one user. Pass the user ID on the command line or enter it at the prompt.
+* **get_outlier_list.py**: Use the `/incidents/{}/outlier_incident` endpoint to get outlier info about all `triggered` and `acknowledged` incidents. Returns the incident ID and it's category i.e. `rare` or `novel`, etc
+* **get_sched.py**: Get the next four weeks of an on call schedule. Pass the schedule ID on the command line or enter it at the prompt.
+* **get_services.py**: Basic query of the `/services` endpoint.
+* **get_some_users.py**: Example of the `/users` endpoint, using an iterator and the `query` option. Enter the name to query on the command line or at the prompt.
+* **get_team_eps.py**: Retrieve the escalation policies associated with a specific team. Pass the team ID on the command line or enter it at the prompt.
+* **get_team.py**: Query the `/teams/` endpoint for info about a single team. Pass the team ID on the command line or enter it at the prompt.
+* **incidents_all_the_things.py**: Very silly. Queries `/incidents` endpoint and displays all of the `include[]` parameters. *Will produce a lot of data for your incidents.* Best if used on a single incident at a time.
+* **incidents_by_team.py**: *TODO update for new `datetime` objects.* This was a forums question, to find the number of incidents associated with a specific team during a selected time period. Pass the team ID on the command line or enter it at the prompt. 
+* **incidents_since.py**: *TODO update for new `datetime` objects.* Query the `/incidents/` endpoint for incidents on a specific service using `since` and `until` parameters. Pass the service on the command line or enter it at the prompt. Hardcoded to 10 days.
+* **

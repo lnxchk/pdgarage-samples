@@ -1,11 +1,9 @@
-#!/usr/local/bin/python3
+#!/usr/bin/env python3
 """
-some scripts for accessing user info via the API
+Query the /schedules/ endpoint looking for users deleted from schedules
 """
 
-import sys
 import os
-import json
 from pagerduty import RestApiV2Client
 
 # auth
@@ -17,8 +15,6 @@ api_token = os.environ['PD_API_KEY']
 session = RestApiV2Client(api_token)
 
 endpoint = "/schedules"
-# basic output, report with each service followed by its integrations.
-# For custom change event integrations, print the code. This is stored in the platform as-is.
 response = session.rget(endpoint)
 
 # print(response)

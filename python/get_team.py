@@ -1,4 +1,7 @@
+#!/usr/bin/env python3
 """
+Get info on a specific team
+
 """
 
 import json
@@ -14,7 +17,7 @@ api_token = os.environ['PD_API_KEY']
 # initialize the session
 session = RestApiV2Client(api_token)
 
-# you can pass the service ID on the command line or enter it at the prompt
+# you can pass the team ID on the command line or enter it at the prompt
 if len(sys.argv) < 2:
     this_team = input("Which service? ")
 else:
