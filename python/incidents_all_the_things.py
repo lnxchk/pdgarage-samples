@@ -1,7 +1,9 @@
+#!/usr/bin/env python3
 """
+Query the /incidents/ endpoint using all of the include[] parameters
+
 """
 
-import sys
 import os
 import json
 from pagerduty import RestApiV2Client
@@ -14,17 +16,9 @@ api_token = os.environ['PD_API_KEY']
 # initialize the session
 session = RestApiV2Client(api_token)
 
-# you can pass the service ID on the command line or enter it at the prompt
-# if len(sys.argv) < 2:
-#     this_service = input("Which service? ")
-# else:
-#     this_service = str(sys.argv[1])
-
 # print()
 
 endpoint = "/incidents?include[]=users&include[]=services&include[]=first_trigger_log_entries&include[]=escalation_policies&include[]=teams&include[]=assignees&include[]=acknowledgers&include[]=priorities&include[]=conference_bridge"
-# basic output, report with each service followed by its integrations.
-# For custom change event integrations, print the code. This is stored in the platform as-is.
 response = session.rget(endpoint)
 
 # print(response)
