@@ -2,7 +2,7 @@
 As an experiment, I created a Jupyter notebook to guide users through some of the basic elements of working with the PagerDuty REST API.
 
 To run this notebook, you can use an online environment like [Google Colab](https://colab.research.google.com/), [Anaconda Cloud](https://anaconda.com/app/), 
-or likely any service that supports Jupyter and allows you to install packages. 
+or likely any service that supports Jupyter and allows you to install packages. Download the notebook and add it to the environment.
 
 You can also run the notebook locally with an environment like Anaconda.
 
